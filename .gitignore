@@ -1,0 +1,27 @@
+# Secrets
+.env
+**/.env
+
+# Virtual environments
+.venv/
+**/.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local / generated (optional — remove line if you want to version graphs)
+usecase_data_kg.json

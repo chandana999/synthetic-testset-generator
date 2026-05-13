@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAGAS — Synthetic test generation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="app-header-inner">
+        <div class="product-lockup">
+          <span class="product-icon" aria-hidden="true"></span>
+          <div>
+            <p class="product-kicker">Retrieval evaluation · RAGAS</p>
+            <h1 class="product-title">Synthetic test set generation</h1>
+          </div>
+        </div>
+        <span class="env-badge">Private deployment</span>
+      </div>
+    </header>
+
+    <div class="app-toolbar">
+      <p class="toolbar-summary">
+        Generate <strong>RAGAS</strong>-style synthetic evaluation data from a server-side document corpus.
+        Output is suitable for benchmarking question answering and retrieval workflows. Long runs are normal for large corpora.
+      </p>
+    </div>
+
+    <div class="app-grid">
+      <aside class="panel panel-config" aria-labelledby="config-heading">
+        <h2 id="config-heading" class="panel-heading">Run configuration</h2>
+
+        <fieldset class="field-block">
+          <legend class="field-label">RAGAS generation strategy</legend>
+          <p class="field-lead">
+            Select how RAGAS materializes a synthetic test set from your LangChain document list. Both paths call the same evaluation-oriented generation stack; they differ in graph construction and orchestration depth.
+          </p>
+          <div class="strategy-list" role="radiogroup" aria-label="RAGAS generation strategy">
+            <label class="strategy-row">
+              <input type="radio" name="mode" value="knowledge_graph" />
+              <span class="strategy-body">
+                <span class="strategy-name">Knowledge graph (explicit)</span>
+                <span class="strategy-detail">
+                  RAGAS builds a <strong>knowledge graph</strong> over your documents, runs default <strong>transforms</strong> (summaries, themes, NER, embedding-based relationships), then applies a <strong>mixed query-synthesizer</strong> distribution to emit a structured synthetic test set—aligned with the full graph-based RAGAS workflow.
+                </span>
+              </span>
+            </label>
+            <label class="strategy-row">
+              <input type="radio" name="mode" value="abstract" checked />
+              <span class="strategy-body">
+                <span class="strategy-name">High-level test set generator</span>
+                <span class="strategy-detail">
+                  RAGAS runs its <strong>managed test-set pipeline</strong> over your document corpus in one pass—graph construction and sampling are handled internally. Use this when you want the default RAGAS orchestration with lower operational configuration.
+                </span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field-grid">
+          <div class="field-block">
+            <label class="field-label" for="testsetSize">Target test set size</label>
+            <p class="field-hint">Requested number of synthetic evaluation rows (questions / references as produced by RAGAS for this run).</p>
+            <input type="number" id="testsetSize" min="1" max="100" value="5" />
+          </div>
+          <div class="field-block">
+            <label class="field-label" for="maxDocs">Maximum document units</label>
+            <p class="field-hint">
+              Cap on how many <strong>LangChain <code>Document</code></strong> objects enter the pipeline (the loader defines what one “unit” is). Leave blank to include all units supplied by the loader for the configured repository.
+            </p>
+            <input type="number" id="maxDocs" min="1" max="500" value="20" placeholder="No cap" />
+          </div>
+        </div>
+
+        <div class="field-block">
+          <label class="field-label" for="dataDir">Source repository path <span class="optional-tag">optional</span></label>
+          <p class="field-hint">
+            Absolute server path to the document directory for this run. If empty, the service uses its configured default corpus location.
+          </p>
+          <input type="text" id="dataDir" class="input-mono" placeholder="e.g. D:\corpora\eval-source" autocomplete="off" spellcheck="false" />
+        </div>
+
+        <details class="disclosure">
+          <summary class="disclosure-summary">Advanced connectivity</summary>
+          <div class="disclosure-body">
+            <label class="field-label" for="apiBase">Service base URL</label>
+            <p class="field-hint">
+              Leave blank when this console is served by the same host as the generation API. Set only for split deployments (e.g. static console on another origin).
+            </p>
+            <input type="url" id="apiBase" class="input-mono" placeholder="Same origin" autocomplete="off" />
+          </div>
+        </details>
+
+        <button type="button" class="btn-submit" id="runBtn">
+          <span class="btn-text">Execute generation</span>
+          <span class="btn-progress" aria-hidden="true"></span>
+        </button>
+        <p id="status" class="run-status" role="status"></p>
+      </aside>
+
+      <main class="panel panel-output" aria-labelledby="output-heading">
+        <h2 id="output-heading" class="panel-heading">Run output</h2>
+
+        <section class="output-section" aria-labelledby="meta-heading">
+          <h3 id="meta-heading" class="output-subheading">Run manifest</h3>
+          <pre id="metaOut" class="code-block" tabindex="0">{}</pre>
+        </section>
+
+        <section class="output-section" aria-labelledby="examples-heading">
+          <h3 id="examples-heading" class="output-subheading">Synthetic test rows</h3>
+          <div id="tableWrap" class="table-container"></div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <span class="footer-item">OpenAPI specification: <code>/docs</code></span>
+      <span class="footer-sep" aria-hidden="true">|</span>
+      <span class="footer-item">Health: <code>/health</code></span>
+    </footer>
+  </div>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>

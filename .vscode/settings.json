@@ -1,0 +1,19 @@
+{
+  "python.defaultInterpreterPath": "c:/Users/chand/Downloads/AIE8-s07-assignment/AIE8-s07-assignment/07_Synthetic_Data_Generation_and_LangSmith/.venv/Scripts/python.exe",
+  "python.terminal.activateEnvironment": false,
+  "python.analysis.exclude": ["**/.venv/**"],
+  "files.watcherExclude": {
+    "**/.venv/**": true
+  },
+  "search.exclude": {
+    "**/.venv": true
+  },
+  "jupyter.kernels.trusted": true,
+  "terminal.integrated.profiles.windows": {
+    "PowerShell (fast)": {
+      "source": "PowerShell",
+      "args": ["-NoLogo", "-NoProfile"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell (fast)"
+}
