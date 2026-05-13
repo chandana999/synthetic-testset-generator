@@ -1,10 +1,7 @@
 
 <h1 align="center">Synthetic test set generation (RAGAS)</h1>
 
-<p align="center">
-  <strong>Session 7 — Synthetic data generation &amp; LangSmith</strong><br />
-  Assignment notebook + optional <strong>FastAPI</strong> service and <strong>web console</strong> for RAGAS-style synthetic evaluation data.
-</p>
+
 
 ---
 
@@ -95,30 +92,6 @@ Then open **http://127.0.0.1:8000/** for the console and **http://127.0.0.1:8000
 
 ---
 
-## Session 7 — Course materials (AIE8)
-
-| Session sheet | Recording | Slides | Homework | Feedback |
-|-----------------|-----------|--------|----------|----------|
-| [Notion — Session 7](https://www.notion.so/Session-7-Synthetic-Data-Generation-for-Evaluation-26acd547af3d80bd9db1e9ad8f41880e) | [Zoom recording](https://us02web.zoom.us/rec/share/5UU96rLGvm2q24vJQ19YnVJqDHkh_D7GB7P7dL_qDXPNs0-IRva4kl235y_ThbMJ.ErOuS4jux1UdX-OV) (see course for passcode) | [Canva slides](https://www.canva.com/design/DAG0feUex_k/JTZF3nbvZe6aBGTeuzfa8w/edit) | [Homework form](https://forms.gle/4MBF8HiZSgjXvCZq9) | [Feedback](https://forms.gle/ut8SuMcYVZMSnAks7) |
-
-### Notebook activities
-
-- **Breakout 1:** RAGAS synthetic data generation  
-- **Breakout 2:** LangSmith dataset, evaluate RAG chain, iterate on the pipeline  
-
-### Optional advanced build (course)
-
-Reproduce RAGAS-style generation with a **LangGraph** agent using **Evol Instruct** (see notebook section in original brief). Deliverables include evolved questions, answers, and contexts.
-
-### Submitting homework (summary)
-
-1. Branch (e.g. `s07-assignment`), complete **`Synthetic_Data_Generation_RAGAS_&_LangSmith_Assignment.ipynb`**, commit and push to **`origin`** (do not merge to `main` if the course says not to).  
-2. Submit the form with: notebook URL on the assignment branch, Loom link, lessons learned, optional social posts.
-
-### Ship / share (course)
-
-- **Ship:** completed notebook.  
-- **Share:** optional social post template is in the course community guidelines.
 
 ---
 
